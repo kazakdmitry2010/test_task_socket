@@ -4,6 +4,11 @@ angular.module("app",["btford.socket-io"])
 		})
 		.controller("ctrl", function($scope,mySocket){
 			$scope.name = "Jimmy";
+
+			
+
+				mySocket.emit('data', $scope.name);
+			
 			
 		
 		});

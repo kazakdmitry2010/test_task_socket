@@ -1,19 +1,18 @@
-var express = require('express');
-var app = express();
-var server = app.listen(3000); 
-console.log("server is started")
-app.use(express.static(__dirname + '/public'));
+var t = require('express');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
+server.listen(3000);
 
+app.use(t.static(__dirname + '/public'));
 
-
-
-var socket = require('socket.io');
-
-var io = socket(server);
-
-io.sockets.on('connection',newConnection)
-
-function newConnection(socket){
+io.on('connection', function (socket) {
   console.log(socket.id);
-};
+  
+  socket.on('data', function (data) {
+    console.log(data);
+  });
+
+ 
+});
