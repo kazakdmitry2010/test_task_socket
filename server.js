@@ -8,11 +8,14 @@ server.listen(3000);
 app.use(t.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
-  console.log(socket.id);
-  
+  console.log(socket);
+  var k;
   socket.on('data', function (data) {
+    
     console.log(data);
+    io.emit('data',data);
   });
 
+  
  
 });

@@ -3,12 +3,19 @@ angular.module("app",["btford.socket-io"])
 		  return socketFactory();
 		})
 		.controller("ctrl", function($scope,mySocket){
-			$scope.name = "Jimmy";
+			$scope.name = "";
 
-			
-
+			$scope.$watch('name',function(){
 				mySocket.emit('data', $scope.name);
+				mySocket.on('data', function(data){
+					console.log(data);
+					$scope.name = data;
+				});	
+			});
+
+			//		
+
 			
-			
+				
 		
 		});
