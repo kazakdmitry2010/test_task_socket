@@ -9,11 +9,17 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 		.controller("ctrl", function($scope,mySocket,localStorageService){
 			
 			$scope.addClient = function(){
-				$scope.db.push({first_name:'Jimmy'});
-				console.log($scope.db);
-				localStorageService.set('take', $scope.db);	
+				$scope.db.push({first_name:'John'});
+				//console.log($scope.db);
+				//localStorageService.set('take', $scope.db);
+				//$scope.db=localStorageService.get('take');
+				mySocket.emit('data', $scope.db);
+				
 			};
-
+			mySocket.on('data', function(data){
+					console.log(data);
+					$scope.db = data;
+				});		
 
 			$scope.bool=true;
 			$scope.showInfo = function(item,event){
@@ -68,19 +74,15 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 			else{
 				$scope.db = localStorageService.get('take');
 			}
-			console.log($scope.db);
+			//console.log($scope.db);
 
 
 
     //socket.io
     //$scope.name = '';
-			/*$scope.$watch('name',function(){
-				mySocket.emit('data', $scope.name);
-				mySocket.on('data', function(data){
-					console.log(data);
-					$scope.name = data;
-				});	
-			});*/
+			$scope.$watch('db',function(){
+				
+			});
 
 				
 

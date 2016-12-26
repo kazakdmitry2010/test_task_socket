@@ -9,7 +9,7 @@ app.use(t.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
   
-  var k;
+ 
   socket.on('data', function (data) {
     
     console.log(data);
