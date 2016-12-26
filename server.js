@@ -8,7 +8,7 @@ server.listen(3000);
 app.use(t.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
-  console.log(sockets);
+  
   var k;
   socket.on('data', function (data) {
     

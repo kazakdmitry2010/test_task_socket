@@ -8,9 +8,16 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 		})
 		.controller("ctrl", function($scope,mySocket,localStorageService){
 			
-	
-			
+			$scope.addClient = function(){
+				$scope.db.push({first_name:'Jimmy'});
+				console.log($scope.db);
+				localStorageService.set('take', $scope.db);	
+			};
+
+
+			$scope.bool=true;
 			$scope.showInfo = function(item,event){
+				$scope.bool=false;
 				var t = angular.element(event.target.parentNode.parentNode.parentNode)[0];
 				var s=angular.element(t).children();
 				for ( var i=0; i<s.length; i++ ){

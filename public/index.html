@@ -12,7 +12,7 @@
 					<div class="col-md-3">firstName</div>
 					<div class="col-md-3">age</div>
 					<div class="col-md-3">source
-					<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:110px;"></span></div>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:110px;" ng-click="addClient()"></span></div>
 				</div>
 				<div class="row">
 				  <div class="col-md-12">
@@ -29,11 +29,22 @@
 					</ul>
 					</div>
 				</div>
-
-				<ul>
-					<li ng-repeat="com in commun">{{com.date}}{{com.text}}</li>
-				</ul>
-			
+				<div class="row" ng-hide=bool style="background-color:gray;margin-top:30px;">
+					<div class="row">
+						<div class="col-md-4">DATE</div>
+						<div class="col-md-8">why was call</div>
+					</div>
+					<div class="col-md-12">
+						<ul style="padding-left:0;">
+							<li ng-repeat="com in commun" type="none">
+								<div class="row">
+									<div class="col-md-4">{{com.date}}</div>
+									<div class="col-md-8">{{com.text}}</div>
+								</div>
+							</li>
+						</ul>
+					</div>	
+				</div>
 		</div>
 
 		
