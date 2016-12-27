@@ -6,44 +6,50 @@
 		<title>something</title>
 	</head>
 	<body ng-app="app" ng-cloak>
-		<div ng-controller="ctrl" style="margin-left:22px;width:800px;">
-			  <div class='row' style="background-color: gray;">	
-					<div class="col-md-3">lastName</div>
-					<div class="col-md-3">firstName</div>
-					<div class="col-md-3">age</div>
-					<div class="col-md-3">source
-					<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:110px;" ng-click="addClient()"></span></div>
-				</div>
-				<div class="row">
-				  <div class="col-md-12">
-					<ul style="padding-left:0px; ">
-	  					<li ng-repeat="item in db" type="none" ng-click="showInfo(item,$event)">
-	  						<div class="row" style="background-color:yellow;height:30px;">
-		  						<div class="col-md-3" >{{item.last_name}}</div>
-		  						<div class="col-md-3">{{item.first_name}}</div>
-		  						<div class="col-md-3">{{'27'}}</div>
-		  						<div class="col-md-3">{{'site'}}</div>
-	  						</div>
-	  					</li>
-	  
-					</ul>
+		<div ng-controller="ctrl" style="margin-left:20px;">
+			<div class="row">
+				<div class="col-md-6">
+				  <div class='row' style="background-color: gray;">	
+						<div class="col-md-3">lastName</div>
+						<div class="col-md-3">firstName</div>
+						<div class="col-md-3">age</div>
+						<div class="col-md-3">source
+						<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:80px;" ng-click="addClient()"></span></div>
 					</div>
-				</div>
-				<div class="row" ng-hide=bool style="background-color:gray;margin-top:30px;">
 					<div class="row">
-						<div class="col-md-4">DATE</div>
-						<div class="col-md-8">why was call</div>
-					</div>
-					<div class="col-md-12">
-						<ul style="padding-left:0;">
-							<li ng-repeat="com in commun" type="none">
-								<div class="row">
-									<div class="col-md-4">{{com.date}}</div>
-									<div class="col-md-8">{{com.text}}</div>
-								</div>
-							</li>
+					  <div class="col-md-12">
+						<ul style="padding-left:0px; ">
+		  					<li ng-repeat="item in db" type="none" ng-click="showInfo(item,$event)">
+		  						<div class="row" style="background-color:yellow;height:30px;">
+			  						<div class="col-md-3" >{{item.last_name}}</div>
+			  						<div class="col-md-3">{{item.first_name}}</div>
+			  						<div class="col-md-3">{{'27'}}</div>
+			  						<div class="col-md-3">{{'site'}}</div>
+		  						</div>
+		  					</li>
+		  
 						</ul>
-					</div>	
+						</div>
+					</div>
+					<div class="row" ng-hide=bool style="background-color:gray;margin-top:30px;">
+						<div class="row">
+							<div class="col-md-4">DATE</div>
+							<div class="col-md-8">why was call</div>
+						</div>
+						<div class="col-md-12">
+							<ul style="padding-left:0;">
+								<li ng-repeat="com in commun" type="none">
+									<div class="row">
+										<div class="col-md-4">{{com.date}}</div>
+										<div class="col-md-8">{{com.text}}</div>
+									</div>
+								</li>
+							</ul>
+						</div>	
+					</div>
+				</div>
+				<div class="col-md-3" ng-hide=bool><phone-list info ='phones'></phone-list></div>
+				<div class="col-md-3" ng-hide=bool>sadsadasd</div>	
 				</div>
 		</div>
 
@@ -64,6 +70,7 @@
 		<script src="angular-local-storage.js"></script>
 		<script src="mask.js"></script>
 		<script src="index.js"></script>
+		<script src="pnoneList.js"></script>
 		
 		<link rel="stylesheet" href="css.css">		
 	</body>
