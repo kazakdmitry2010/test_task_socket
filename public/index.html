@@ -6,7 +6,9 @@
 		<title>something</title>
 	</head>
 	<body ng-app="app" ng-cloak>
+
 		<div ng-controller="ctrl" style="margin-left:20px;">
+		<input type="text" ng-model="num">
 			<div class="row">
 				<div class="col-md-6">
 				  <div class='row' style="background-color: gray;">	
@@ -38,17 +40,17 @@
 						</div>
 						<div class="col-md-12">
 							<ul style="padding-left:0;">
-								<li ng-repeat="com in commun" type="none">
+								<li ng-repeat="item in client.communication" type="none">
 									<div class="row">
-										<div class="col-md-4">{{com.date}}</div>
-										<div class="col-md-8">{{com.text}}</div>
+										<div class="col-md-4">{{item.date}}</div>
+										<div class="col-md-8">{{item.text}}</div>
 									</div>
 								</li>
 							</ul>
 						</div>	
 					</div>
 				</div>
-				<div class="col-md-3" ng-hide=bool><phone-list info ='phones'></phone-list></div>
+				<div class="col-md-3" ng-hide=bool><phone-list info ='client'></phone-list></div>
 				<div class="col-md-3" ng-hide=bool>sadsadasd</div>	
 				</div>
 		</div>

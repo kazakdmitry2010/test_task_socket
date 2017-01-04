@@ -24,22 +24,29 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 			$scope.bool=true;
 			
 			
-			$scope.showInfo = function(item,event){
-				$scope.bool=false;
+			$scope.showInfo = function( item,event ){
+				$scope.bool = false;
+				
+				$scope.$on('addPhone', function(event,data){
+						  scope.phones.push(data);	
+					});
+
 				var t = angular.element(event.target.parentNode.parentNode.parentNode)[0];//5
-				var s=angular.element(t).children();
-				for ( var i=0; i<s.length; i++ ){
+				var s = angular.element(t).children();
+				for ( var i=0; i < s.length; i++ ){
 					 if(angular.element(s[i].children).hasClass('clicked')){
 					 	angular.element(s[i].children).removeClass('clicked');
 					 }
 				}
 
+				angular.element(event.target.parentNode).addClass('clicked');
 
 				$scope.commun = item.communication;
 				
-				angular.element(event.target.parentNode).addClass('clicked');
-				return $scope.phones = item.phones;
-				//console.log($scope.phones);
+				
+				$scope.client = item;
+				console.log( $scope.client );
+				
 			};
 
 

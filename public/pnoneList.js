@@ -1,24 +1,24 @@
 angular.module('app')
-		.directive('phoneList',function(mySocket,localStorageService){
+		.directive('phoneList',function(mySocket,localStorageService,$compile){
 			return{
 				scope:{
-					phones:'=info'
+					clientInfo:'=info',
+
 				},
 				templateUrl:'pnoneList.html',
 				link:function(scope,elem,attrs){
 					console.log(scope);
+					
 					elem.find('a').on('click', function(){
-						if(elem.find('li').length===0){
-					  	   elem.find('ul').append('<input type="text">');
-						}
-						var len = elem.find('li').length;
-						var t = elem.find('li');
-						var s=angular.element(t[len-1]).clone();
-						//angular.element(t[len-1]).append(s);
+						 scope.clientInfo.phones.push(123456789);
+						 el=angular.element("<li ng-repeat=item in clientInfo.phones>{{item}}</li>");
+						 $compile(el)(scope.clientInfo.phones);
+						/*angular.element(elem.find('ul'))
+								.append("<li><input type='text'  ng-model='items'/></li>");*/
+					});
+					
+					console.log(scope.clientInfo)
 
-						angular.element(elem.find('ul')).append(s);
-
-					})
 				}
 			}
 		})
