@@ -2,3 +2,7 @@
 	background-color:black !important;
 }
 
+.editable-click, a.editable-click {
+    text-decoration: none;
+    color: white;
+    border-bottom: none;

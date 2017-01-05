@@ -18,7 +18,7 @@
 						<div class="col-md-3">source
 						<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:80px;" ng-click="addClient()"></span></div>
 					</div>
-					<div class="row">
+					<div class="row" style="overflow-y:auto;height:250px;">
 					  <div class="col-md-12">
 						<ul style="padding-left:0px; ">
 		  					<li ng-repeat="item in db" type="none" ng-click="showInfo(item,$event)">
@@ -36,23 +36,55 @@
 					<div class="row" ng-hide=bool style="background-color:gray;margin-top:30px;">
 						<div class="row">
 							<div class="col-md-4">DATE</div>
-							<div class="col-md-8">why was call</div>
+							<div class="col-md-8">why was call
+								<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:400px;" ng-click="addCallInfo()"></span>
+							</div>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12" style="overflow-y:auto;height:150px;overflow-x:hidden">
 							<ul style="padding-left:0;">
 								<li ng-repeat="item in client.communication" type="none">
-									<div class="row">
-										<div class="col-md-4">{{item.date}}</div>
-										<div class="col-md-8">{{item.text}}</div>
+									<div class="row" style="text-decoration:none;color:white;border-bottom:none;">
+										<div class="col-md-4"><a href="#" editable-text="item.date">{{item.date}}</a></div>
+										<div class="col-md-8"><a href="#" editable-text="item.text">{{item.text}}</a></div>
 									</div>
 								</li>
 							</ul>
 						</div>	
 					</div>
 				</div>
-				<div class="col-md-3" ng-hide=bool><phone-list info ='client'></phone-list></div>
-				<div class="col-md-3" ng-hide=bool>sadsadasd</div>	
+				<div class="col-md-2" ng-hide=bool style="margin-left:20px;">
+					<div class="row">
+						<div class="col-md-12" style="background-color:gray;">
+							<ul style="width:290px;"> Телефоны
+								<li ng-repeat="phone in client.phones track by $index" type="none" style="margin-bottom:10px;"><input type="text" ng-model="phone"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:5px;" ng-click="deletePhone( $index )"></span></li>
+							</ul>
+							<a href="#" ng-click="addPhone(client.phones)" style="padding-left:40px;color:black;">add a phone number</a>
+						</div>
+					</div>
 				</div>
+				<div class="col-md-3" ng-hide=bool style="background-color:gray;margin-left:10px;">
+					<div class="row" >
+						<div class="col-md-12">Информация</div>
+					</div>
+					<div class="row" >
+						<div class="col-md-12">
+							<input type="text" ng-model = client.first_name>
+						</div>
+						<div class="col-md-12">
+							<input type="text" ng-model = client.last_name>
+						</div>
+						<div class="col-md-12">
+							<input type="text" ng-model = client.bdate>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6"><label><input type="radio" ng-model="client.sex" ng-value="0">мужской</label></div>
+								<div class="col-md-6"><label><input type="radio" ng-model="client.sex" ng-value="1">женский</label></div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
 		</div>
 
 		
@@ -72,8 +104,8 @@
 		<script src="angular-local-storage.js"></script>
 		<script src="mask.js"></script>
 		<script src="index.js"></script>
-		<script src="pnoneList.js"></script>
-		
+		<link href="xeditable.css" rel="stylesheet">
+		<script src="xeditable.js"></script>
 		<link rel="stylesheet" href="css.css">		
 	</body>
 </html>

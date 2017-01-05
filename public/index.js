@@ -1,4 +1,4 @@
-angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
+angular.module("app",["btford.socket-io", 'LocalStorageModule', 'ui.mask', 'xeditable'])
 		.factory('mySocket', function (socketFactory) {
 		  return socketFactory();
 		})
@@ -6,10 +6,17 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 			localStorageServiceProvider
     			.setPrefix('app');
 		})
+		.run(function(editableOptions) {
+  			editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+		})
 		.controller("ctrl", function($scope,mySocket,localStorageService){
 			
+			$scope.addCallInfo = function(){
+				$scope.client.communication.push({ date:"12.12.12", text:"введите информацию о звонке" });	
+			};
+
 			$scope.addClient = function(){
-				$scope.db.push({first_name:'John'});
+				$scope.db.push({first_name:'Mark',last_name:'Rusvelt',phones:[]});
 				//console.log($scope.db);
 				//localStorageService.set('take', $scope.db);
 				//$scope.db=localStorageService.get('take');
@@ -27,9 +34,7 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 			$scope.showInfo = function( item,event ){
 				$scope.bool = false;
 				
-				$scope.$on('addPhone', function(event,data){
-						  scope.phones.push(data);	
-					});
+				
 
 				var t = angular.element(event.target.parentNode.parentNode.parentNode)[0];//5
 				var s = angular.element(t).children();
@@ -88,15 +93,15 @@ angular.module("app",["btford.socket-io",'LocalStorageModule','ui.mask'])
 			else{
 				$scope.db = localStorageService.get('take');
 			}
-			//console.log($scope.db);
+			
 
+			$scope.addPhone = function(){
+				$scope.client.phones.push("+375(33)654-46-58");
+			};
 
-
-    //socket.io
-    //$scope.name = '';
-			$scope.$watch('db',function(){
-				
-			});
+    		$scope.deletePhone = function(pnone,$index){
+    			$scope.client.phones.splice($index, 1);
+    		};
 
 				
 
