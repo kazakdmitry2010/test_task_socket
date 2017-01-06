@@ -6,17 +6,22 @@ angular.module("app",["btford.socket-io", 'LocalStorageModule', 'ui.mask', 'xedi
 			localStorageServiceProvider
     			.setPrefix('app');
 		})
+
 		.run(function(editableOptions) {
   			editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 		})
+
 		.controller("ctrl", function($scope,mySocket,localStorageService){
-			
+
+			$scope.sortType = 'name';
+			$scope.searchPhone = '';
+
 			$scope.addCallInfo = function(){
 				$scope.client.communication.push({ date:"12.12.12", text:"введите информацию о звонке" });	
 			};
 
 			$scope.addClient = function(){
-				$scope.db.push({first_name:'Mark',last_name:'Rusvelt',phones:[]});
+				$scope.db.push({first_name:'Mark',last_name:'Rusvelt',phones:[],communication:[]});
 				//console.log($scope.db);
 				//localStorageService.set('take', $scope.db);
 				//$scope.db=localStorageService.get('take');

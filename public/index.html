@@ -12,21 +12,30 @@
 			<div class="row">
 				<div class="col-md-6">
 				  <div class='row' style="background-color: gray;">	
-						<div class="col-md-3">lastName</div>
-						<div class="col-md-3">firstName</div>
-						<div class="col-md-3">age</div>
-						<div class="col-md-3">source
-						<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:80px;" ng-click="addClient()"></span></div>
+						<div class="col-md-3">
+							<a href="#" ng-click="sortType = 'last_name'" style="color:white;text-decoration:nones">
+				            	lastName
+				            </a>
+			            </div>
+
+						<div class="col-md-3">
+				            	firstName
+				            
+				        </div>
+
+						<div class="col-md-2">age</div>
+						<div class="col-md-4">source<span> <input type="text" ng-model="searchPhone" ui-mask=+999(99)999-99-99 style="width:150px;"></span>
+						<span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:5px;" ng-click="addClient()"></span></div>
 					</div>
 					<div class="row" style="overflow-y:auto;height:250px;">
 					  <div class="col-md-12">
 						<ul style="padding-left:0px; ">
-		  					<li ng-repeat="item in db" type="none" ng-click="showInfo(item,$event)">
+		  					<li ng-repeat="item in db|orderBy:sortType|filter:searchPhone" type="none" ng-click="showInfo(item,$event)">
 		  						<div class="row" style="background-color:yellow;height:30px;">
 			  						<div class="col-md-3" >{{item.last_name}}</div>
 			  						<div class="col-md-3">{{item.first_name}}</div>
-			  						<div class="col-md-3">{{'27'}}</div>
-			  						<div class="col-md-3">{{'site'}}</div>
+			  						<div class="col-md-2">{{'27'}}</div>
+			  						<div class="col-md-4">{{'site'}}</div>
 		  						</div>
 		  					</li>
 		  
@@ -56,7 +65,7 @@
 					<div class="row">
 						<div class="col-md-12" style="background-color:gray;">
 							<ul style="width:290px;"> Телефоны
-								<li ng-repeat="phone in client.phones track by $index" type="none" style="margin-bottom:10px;"><input type="text" ng-model="phone"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:5px;" ng-click="deletePhone( $index )"></span></li>
+								<li ng-repeat="phone in client.phones track by $index" type="none" style="margin-bottom:10px;"><input type="text" ng-model="phone"  ui-mask=+999(99)999-99-99 ui-mask-placeholder ui-mask-placeholder-char="_"/&gt;><span class="glyphicon glyphicon-remove" aria-hidden="true" style="margin-left:5px;" ng-click="deletePhone( $index )"></span></li>
 							</ul>
 							<a href="#" ng-click="addPhone(client.phones)" style="padding-left:40px;color:black;">add a phone number</a>
 						</div>
